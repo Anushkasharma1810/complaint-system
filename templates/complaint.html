@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Complaint</title>
+    <style>
+        body {
+            background: white;
+            color: #e67bdf;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #e67bdf;
+            text-align: center;
+            width: 350px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            background: white;
+            color: #e67bdf;
+            border: 1px solid #e67bdf;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #e67bdf;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e67bdf;
+        }
+
+        a {
+            color: #e67bdf;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>SUBMIT COMPLAINT</h2>
+
+    <form method="post">
+        <textarea name="text" placeholder="Type your complaint..." required></textarea>
+        <button type="submit">SUBMIT</button>
+    </form>
+
+    <br>
+    <a href="/dashboard">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>

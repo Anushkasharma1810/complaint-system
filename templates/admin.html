@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+
+    <style>
+        body {
+            background-color: #faf4f4;
+            color: #af8ad3;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        h2
+        <div style="margin-top: 30px;"> </div> 
+        {
+            margin-top: 30px;
+            color: #bb6fce;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #faf4f4;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 0 10px #e680eb;
+        }
+
+        .navbar h3 {
+            margin: 0;
+            color: #bb6fce;
+        }
+
+        .nav-links a {
+            color: #c871e0;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-shadow: 0 0 5px #ea81f1;
+        }
+
+        table {
+            margin: 80px auto;
+            border-collapse: collapse;
+            width: 85%;
+            box-shadow: 0 0 15px #af8ad3;
+        }
+
+        th, td {
+            border: 1px solid #c47fd4;
+            padding: 12px;
+        }
+
+        th {
+            background: #faf4f4;
+            color: #bb6fce;
+        }
+
+        tr:hover {
+            background: #f3e6f5;
+        }
+
+        button {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #ffb3b3;
+        }
+
+        .progress {
+            background: #ffe0a3;
+            color: black;
+        }
+
+        .resolved {
+            background: #b6f0d3;
+            color: black;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .footer {
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #ce6ed3;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h3>⚡ Admin Panel</h3>
+    <div class="nav-links">
+        <a href="/admin">🔄 Refresh</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<h2>ALL COMPLAINTS</h2>
+
+<p style="color:#bb6fce; font-weight:bold;">
+    Total Complaints: {{ complaints|length }}
+</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Complaint</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for c in complaints %}
+    <tr>
+        <td>{{ c[0] }}</td>
+        <td>{{ c[1] }}</td>
+        <td>{{ c[2] }}</td>
+        <td>{{ c[3] }}</td>
+        <td>{{ c[4] }}</td>
+
+        <td>
+            <a href="/update_status/{{ c[0] }}/Pending">
+                <button class="pending">Pending</button>
+            </a>
+
+            <a href="/update_status/{{ c[0] }}/In Progress">
+                <button class="progress">Progress</button>
+            </a>
+
+            <a href="/update_status/{{ c[0] }}/Resolved">
+                <button class="resolved">Resolved</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="footer">
+    <a href="/admin">⬅ Refresh Panel</a>
+</div>
+
+</body>
+</html>

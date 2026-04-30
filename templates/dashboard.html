@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #faf4f4;
+            font-family: 'Courier New', monospace;
+            color: #af8ad3;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #faf4f4;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 0 10px #e680eb;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: #bb6fce;
+        }
+
+        .nav-links a {
+            color: #c871e0;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-shadow: 0 0 5px #ea81f1;
+        }
+
+        /* MAIN */
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* CARDS */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #faf4f4;
+            padding: 30px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #dd81da;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #f98bf3;
+        }
+
+        /* BUTTONS */
+        .actions {
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 25px;
+            border: 1px solid #e67bdf;
+            color: #e67bdf;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #e67bdf;
+            color: white;
+            box-shadow: 0 0 10px #e67bdf;
+        }
+
+        /* GRAPH SECTION */
+        .graphs {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .graph-box {
+            text-align: center;
+        }
+
+        canvas {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px #e680eb;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>⚡ Complaint System</h2>
+    <div class="nav-links">
+        <a href="/dashboard">Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+    <h1>Dashboard</h1>
+    <p>Welcome to Smart Complaint Management System</p>
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total</h3>
+            <p>{{ total }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Pending</h3>
+            <p>{{ pending }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Resolved</h3>
+            <p>{{ resolved }}</p>
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+        <a class="btn" href="/complaint">➕ Add Complaint</a>
+        <a class="btn" href="/my_complaints">📋 View Complaints</a>
+    </div>
+
+    <!-- GRAPH DATA -->
+    <div id="chartData" 
+         data-pending="{{ pending }}" 
+         data-progress="{{ inprogress }}" 
+         data-resolved="{{ resolved }}">
+    </div>
+
+    <!-- GRAPHS -->
+    <div class="graphs">
+
+        <div class="graph-box">
+            <h4>Pending</h4>
+            <canvas id="pendingChart" width="130" height="130"></canvas>
+        </div>
+
+        <div class="graph-box">
+            <h4>In Progress</h4>
+            <canvas id="progressChart" width="130" height="130"></canvas>
+        </div>
+
+        <div class="graph-box">
+            <h4>Resolved</h4>
+            <canvas id="resolvedChart" width="130" height="130"></canvas>
+        </div>
+
+    </div>
+</div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const dataDiv = document.getElementById("chartData");
+
+const pending = Number(dataDiv.getAttribute("data-pending"));
+const progress = Number(dataDiv.getAttribute("data-progress"));
+const resolved = Number(dataDiv.getAttribute("data-resolved"));
+
+// Pending
+new Chart(document.getElementById('pendingChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Pending'],
+        datasets: [{
+            data: [pending],
+            backgroundColor: ['#ffb3b3']
+        }]
+    }
+});
+
+// Progress
+new Chart(document.getElementById('progressChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['In Progress'],
+        datasets: [{
+            data: [progress],
+            backgroundColor: ['#ffe0a3']
+        }]
+    }
+});
+
+// Resolved
+new Chart(document.getElementById('resolvedChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Resolved'],
+        datasets: [{
+            data: [resolved],
+            backgroundColor: ['#b6f0d3']
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

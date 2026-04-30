@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Complaints</title>
+    <style>
+        body {
+            background: #f3f1f1;
+            color: #e67bdf;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        table {
+            margin: 40px auto;
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 0 15px #e67bdf;
+        }
+
+        th, td {
+            border: 1px solid #e67bdf;
+            padding: 12px;
+        }
+
+        th {
+            background: #f3f1f1;
+        }
+
+        tr:hover {
+            background: #f3f1f1;
+        }
+
+        a {
+            color: #e67bdf;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>MY COMPLAINTS</h2>
+<form method="get">
+    <input type="text" name="search" placeholder="Search complaint..." style="padding:8px; width:200px;">
+    
+    <select name="status" style="padding:8px;">
+        <option value="">All</option>
+        <option>Pending</option>
+        <option>In Progress</option>
+        <option>Resolved</option>
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+<br><br>
+
+<a href="/download">
+    <button style="padding:10px; background:#6c63ff; color:white; border:none;">
+        Download Complaints
+    </button>
+</a>
+
+<table>
+    
+   <tr>
+    <th>ID</th>
+    <th>Complaint</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+    {% for c in complaints %}
+<tr>
+    <td>{{ c[0] }}</td>
+    <td>{{ c[2] }}</td>
+    <td>{{ c[3] }}</td>
+
+    <td>
+        <a href="/delete/{{ c[0] }}">
+            <button style="background:#5f0d1d; color:white; border:none; padding:5px; border-radius:5px;">
+                Delete
+            </button>
+        </a>
+        <a href="/edit/{{ c[0] }}">
+            <button style="background:#4dabf7; color:white;">
+                Edit
+            </button>
+        </a>
+        <a href="/logout">
+            <button style="background:#333; color:white;">Logout</button>
+        </a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="/dashboard">⬅ Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            background-color: #efe6ee;
+            color: #d491e4;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: #f7fffb;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #c877d2;
+            text-align: center;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+            border: 1px solid #f5b4f3;
+            color: #df8ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #a76c9e;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e093e9;
+        }
+
+        a {
+            color: #dc90e8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>REGISTER</h2>
+
+    <form method="post">
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">REGISTER</button>
+    </form>
+
+    <br>
+    <a href="/login">Back to Login</a>
+</div>
+
+</body>
+</html>
